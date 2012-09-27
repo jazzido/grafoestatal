@@ -31,6 +31,11 @@ def main():
 
     g = Graph()
 
+    try:
+        fuente = list(g.fuentes_de_informacion.index.lookup(nombre="DineroYPolitica.org"))[0]
+    except IndexError:
+        fuente = g.fuentes_de_informacion.create(nombre="DineroYPolitica.org")
+        
     for r in db_utils.query_db(conn.cursor(), QUERY):
         # XXX TODO
         # partidos politicos
